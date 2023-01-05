@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    background-color: white;
+}
+
+nav a{
+    color: rgba(247, 115, 115, 0.424);
+    text-decoration: none;
+}
+
+.active{
+    color: rgba(247, 115, 115, 0.912);
+}

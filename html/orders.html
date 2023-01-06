@@ -26,22 +26,48 @@
     </header>
 
     <h1>Beställningar: </h1>
-    <ul> </ul>
+    <div> </div>
 
 
     <script>
         /* https://www.youtube.com/watch?v=zUcc4vW-jsI */
-        fetch('../orders.json')
-        .then(res => {
-            return res.json();
-        })
-        .then(jsondata => {
-             jsondata.forEach(order => {
-                const orderLine =  `<li>${order.orderName}</br>${order.orderColour}</br>${order.orderOther}</br>${order.orderDate}</li></br>`
-                document.querySelector('ul').insertAdjacentHTML('beforeend', orderLine);
-            }); 
-        })
-        .catch(error => console.log(error));
+        /*         fetch('../orders.json')
+                .then(res => {
+                    return res.json();
+                })
+                .then(jsondata => {
+                     jsondata.forEach(order => {
+                        const orderLine =  `<li>${order.orderName}</br>${order.orderColour}</br>${order.orderOther}</br>${order.orderDate}</li></br>`
+                        document.querySelector('ul').insertAdjacentHTML('beforeend', orderLine);
+                    }); 
+                })
+                .catch(error => console.log(error)); */
+
+
+//testade fetcha api me products istället för orders 
+        fetch('../products.json')
+            .then(res => {
+                return res.json();
+            })
+            .then(jsondata => {
+                jsondata.forEach(product => {
+                    const productCard = `
+                <div class="flex">
+                <div class="flex-container">
+                    <div class="flex-card">
+                        <div class="flex-box">    
+                            <h2>${product.productName}</h2>
+                            <h4 class="h4-pad">${product.productPrice} :-</h4>
+                            <img class="img" src="../uploads/corre.jpg" alt="Corona">
+                        </div>
+                        <input class="box-btn" type="button" value="Lägg till i varukorg">
+                    </div>
+                </div>
+            </div></br>`
+                    document.querySelector('div').insertAdjacentHTML('beforeend', productCard);
+                });
+            })
+            .catch(error => console.log(error));
     </script>
 </body>
 

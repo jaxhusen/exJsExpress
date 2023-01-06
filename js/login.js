@@ -57,9 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch('../users.json');
             const data = await response.text();
             console.log(data);
-
         }
-
         setFormMessage(loginForm, "error", "invalid username/password")
     });
 

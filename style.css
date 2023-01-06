@@ -47,7 +47,6 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    
 }
 
 .flex-card {

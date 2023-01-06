@@ -1,3 +1,4 @@
+// kod för hashning av lösen, ej samma som login.js
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 

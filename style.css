@@ -1,13 +1,188 @@
-*{
+* {
     margin: 0;
     background-color: white;
+    font-family: 'Ubuntu', sans-serif;
+    --color-primary: rgb(242, 235, 237);
+    --color-heading: rgb(111, 110, 110);
+    --color-background: rgba(242, 235, 237, 0.667);
+    --color-background-dark: rgba(131, 131, 131, 0.768);
+    --color-pink:rgba(247, 115, 115, 0.424);
 }
 
-nav a{
-    color: rgba(247, 115, 115, 0.424);
+nav a {
+    color: var(--color-pink);
     text-decoration: none;
+    padding: 2%;
+    cursor: pointer;
+    background-color: rgba(242, 235, 237, 0.667);
+    font-size: larger;
+    font-weight: 500;
 }
 
-.active{
+nav a:hover {
     color: rgba(247, 115, 115, 0.912);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: rgb(242, 235, 237);
+}
+
+.active {
+    color: rgba(247, 115, 115, 0.912);
+}
+
+.img {
+    height: 350px;
+    width: 100%;
+    padding-top: 2%;
+}
+
+
+
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.flex-card {
+    border: 2px solid var(--color-primary);
+    height: 500px;
+    width: 20%;
+    text-align: center;
+    padding: 1%;
+    margin-top: 5%;
+    color: var(--color-background-dark);
+}
+
+.flex-box {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.box-btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: var(--color-primary);
+    padding: 3%;
+    width: 100%;
+    font-weight: 600;
+    font-size: large;
+    color: var(--color-background-dark);
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.box-btn:hover{
+    background-color: white;
+    transition: .5s;
+    color: var(--color-heading);
+    border-color: var(--color-primary);
+}
+
+
+.h4-pad {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.form{
+    width: 40%;
+    border: 1px solid var(--color-primary);
+    padding: 5% 2%;
+    margin-top: 5%;
+    box-shadow: 0 0 40px var(--color-primary);
+    border-radius: 5px;
+}
+
+.form-error-message,
+.form-input-error-message{
+    color: red;
+    padding-top: 2%;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.form-success-message{
+    color: rgb(57, 255, 47);
+    padding: 1%;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.form-grupp{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.form-input{
+    display: block;
+    width: 95%;
+    padding: 2%;
+    border-radius: 5px;
+    border: 1px solid var(--color-pink);
+    transition: background 1s, border-color 1s;
+    background-color: var(--color-primary);
+    color: var(--color-heading);
+    outline: none;
+}
+
+.form-input:focus{
+    background-color: white;
+    border-color: var(--color-heading);
+}
+
+.container-form-btn{
+    padding: 2% 0;
+}
+
+.form-btn {
+    text-decoration: none;
+    background-color: var(--color-pink);
+    padding: 2%;
+    width: 100%;
+    font-size: small;
+    color: var(--color-heading);
+    cursor: pointer;
+    border: 1px solid var(--color-pink);
+    border-radius: 5px;
+}
+
+.form-btn:hover{
+    background-color: white;
+    transition: .5s;
+    color: var(--color-heading);
+    border-color: var(--color-heading);
+}
+
+.form-btn:active{
+    transform: scale(.8);
+}
+
+.form-text a{
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color-heading);
+}
+
+.form-text{
+    padding: 1% 0;
+}
+
+.form-hidden{
+    display: none;
 }

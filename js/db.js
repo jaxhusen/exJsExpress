@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
-var orders = require('./orders.json'); // json file path
+var orders = require('../orders.json'); // json file path
 
 
 // https://www.youtube.com/watch?v=xDYx5UdHwv0

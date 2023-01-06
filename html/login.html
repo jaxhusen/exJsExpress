@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../js/addtocartbtn.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/orders.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/admin.js" defer></script>
+    <script src="../js/login.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="./index.html"> Startsida </a>
+            <a href="./products.html"> Produkter </a>
+            <a href="./orders.html"> Beställningar </a>
+            <a href="./cart.html"> Varukorg </a>
+            <a class="active" href="./login.html"> Logga in </a>
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <form class="form" id="login">
+            <h2 style="color:rgb(111, 110, 110)">Logga in:</h2>
+            <div class="form-message form-error-message"></div>
+            <div class="form-grupp">
+                <input class="form-input" id="username" autofocus placeholder="Användarnamn eller mejladress">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="form-grupp">
+                <input class="form-input" id="password" autofocus placeholder="Lösenord">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="container-form-btn">
+                <input class="form-btn" type="submit" onclick="getInfo()" value="Logga in">
+            </div>
+            <div class="form-text">
+                <a href="#"> Glömt ditt lösenord? </a>
+            </div>
+            <div class="form-text">
+                <a href="./" id="linkCreateAccount" class="form-link"> Registrera dig här </a>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="form-container">
+        <form class="form form-hidden" id="createAccount">
+            <h2 style="color:rgb(111, 110, 110)">Skapa konto:</h2>
+            <div class="form-message form-error-message"></div>
+            <div class="form-grupp">
+                <input class="form-input" id="signupUsername" autofocus placeholder="Användarnamn">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="form-grupp">
+                <input class="form-input" autofocus placeholder="Mejladress">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="form-grupp">
+                <input class="form-input" autofocus placeholder="Lösenord">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="form-grupp">
+                <input class="form-input" autofocus placeholder="Upprepa lösenord">
+                <div class="form-input-error-message"></div>
+            </div>
+            <div class="container-form-btn">
+                <input class="form-btn" type="submit" value="Skapa konto">
+            </div>
+
+            <div class="form-text">
+                <a href="./" id="linkLogin" class="form-link"> Har du redan ett konto? Logga in här </a>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <!-- 
+            <form class="form" id="login">
+        <h2>Logga in:</h2>
+        <div class="form-error-message">Fel användarnamn eller lösenord</div>
+        <input id="username">
+        <input id="password">
+        <input type="button" onclick="getInfo()" value="Spara">
+    </form>
+     -->
+
+
+
+
+<!--     <script src="../js/addtocartbtn.js"></script> -->
+    <!-- 
+    <div class="admin-main-container">
+        <div class="admin-main-main">
+            <fieldset class="admin-main-fieldset">
+                <legend class="admin-main-legend">Add Product</legend>
+                <form autocomplete="off" action="submit" class="admin-main-form">
+                    <div class="main-prod-container">
+                        <label class="admin-label" for="prod-heading">Product Name:</label>
+                        <input type="text" class="main-add-prod prod-heading input-admin-main" id="prod-heading">
+                        <label class="admin-label" for="prod-img">Image:</label>
+                        <input type="text" class="main-add-prod prod-img input-admin-main" id="prod-img">
+                        <label class="admin-label" for="prod-price">Price:</label>
+                        <input type="number" class="main-add-prod prod-price input-admin-main" id="prod-price">
+                        <label class="admin-label" for="prod-desc">Description:</label>
+                        <textarea name="prod-desc" cols="30" rows="10" class="main-add-prod prod-desc input-admin-main"
+                            id="prod-desc"></textarea>
+                        <button id="main-add-btn">Create</button>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+        <div class="admin-main-aside">
+            <div class="main-prod-container">
+                <div class="main-incoming-prod">
+
+                    <ul id="main-incoming-prod">
+
+                    </ul>
+
+                </div>
+                <button class="main-pub-btn">Accept Incoming Stock</button>
+            </div>
+
+        </div>
+    </div> -->
+
+
+</body>
+
+</html>

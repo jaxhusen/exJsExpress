@@ -1,5 +1,5 @@
 //  KOD FÖR INLOGGNIG OCH SKAPA NYTT KONTO
-var db = openDatabase('users', '1.0', 'users database', 2 * 1024 * 1024);
+/* var db = openDatabase('users', '1.0', 'users database', 2 * 1024 * 1024); */
 
 //https://www.youtube.com/watch?v=3GsKEtBcGTk
 
@@ -47,19 +47,60 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.remove("form-hidden");
     })
 
+    //loginForm function för submit som jämför username + password med users.json API
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        //fetcha login här
-
 
         getUsers();
         async function getUsers() {
             const response = await fetch('../users.json');
             const data = await response.text();
-            console.log(data);
+
+            var users = JSON.parse(data);
+            var username = document.querySelector("#username").value;
+            var password = document.querySelector("#password").value;
+
+            const accountExists = users.find(obj => (obj.username === username && obj.password === password))
+            if (accountExists === undefined){
+                setFormMessage(loginForm, "error", "invalid username/password")
+            }
+            else {
+/*                 setFormMessage(loginForm, "success", "USER AND PASSWORD CORRECT") */
+                    window.location.href = 'index.html';
+            }
         }
-        setFormMessage(loginForm, "error", "invalid username/password")
     });
+
+
+
+    //createAccountForm function för submit som jämför om username finnns i users.json API
+    createAccountForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        findUsers();
+        async function findUsers() {
+            const response = await fetch('../users.json');
+            const data = await response.text();
+            console.log(data)
+
+            var users = JSON.parse(data);
+            var username = document.querySelector("#signupUsername").value;
+
+            const usernameExists = users.find(obj => (obj.username === username))
+            if (usernameExists ){
+                setFormMessage(createAccountForm, "error", "Användarnamn finns redan")
+            } else if (usernameExists === undefined){
+               /*  window.location.href = 'login.html'; */
+               setFormMessage(createAccountForm, "success", "konto skapat")
+               //  IMPLEMENTERA NYA ANVÄNDAREN I APIT ELLER LOCALSTORAGE OCH LOGGA IN 
+            }
+            console.log(usernameExists)
+        }
+    });
+
+
+
+
 
     // när användaren börjar skriva men klickar "bort" från rutan vid användarnamn så kommer detta felmeddelande fram
     // kopplat till id "signupUsername"

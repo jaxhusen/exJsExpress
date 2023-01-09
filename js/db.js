@@ -1,35 +1,97 @@
-const express = require('express')
-const app = express()
-const axios = require('axios')
-var orders = require('../orders.json'); // json file path
+
+ https://stackoverflow.com/questions/67822346/how-can-i-extract-data-from-sqlite-in-a-server-page-and-use-the-data-in-a-diffe
+ var express = require('express');
+  var app = express();
+  var fs = require('fs');
+  const sqlite3 = require('sqlite3');
+  const sqlite = require('sqlite');
+  app.use(express.static('public'))
+  
+  
+  async function getDBConnection(){
+      const db = await sqlite.open({
+          filename: "users.db",
+          driver: sqlite3.Database
+      });
+      return db;
+  }
+  
+  app.get('/login.html', async function(req, res){
+      let db = await getDBConnection();
+      let users = await db.all("SELECT * from users");
+      await db.close();
+      return res.json(users)
+  })
+  
+  var port = 5502;
+  app.listen(port, function(){
+      console.log('server on! http://localhost:' + port);
+  });
 
 
-// https://www.youtube.com/watch?v=xDYx5UdHwv0
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* https://www.youtube.com/watch?v=ZRYn6tgnEgM
 const sqlite3 = require('sqlite3').verbose();
+let sql;
 
- const db = new sqlite3.Database('./users.db', sqlite3.OPEN_READWRITE, (err) => {
+//connect to db
+const db = new sqlite3.Database('../users.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) return console.error(err.message)
+})
+
+//create tavle
+sql = `CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, username, password)`;
+db.run(sql);
+
+//drop table
+db.run("DROP TABLE users")
+
+//insert user into db users
+sql = `INSERT INTO users(username, password)
+        VALUES (?, ?)`;
+db.run(
+    sql,
+    ["joni", "123"],
+    (err) => {
+        if (err) return console.error(err.message)
+    });
+
+
+//update data
+sql = `UPDATE users SET username = ? WHERE id = ?`;
+db.run(sql, ['joni', 1], (err) => {
+    if (err) return console.error(err.message)
+});
+
+//delete data
+sql = `DELETE FROM users WHERE id = ?`;
+db.run(sql, [1], (err) => {
+    if (err) return console.error(err.message)
+});
+
+
+//query the data
+sql = 'SELECT * FROM users';
+db.all(sql, [], (err, rows) => {
     if (err) return console.error(err.message);
-
-    console.log("connection successful")
-}); 
-
-
-
-const sql = `SELECT * FROM users`;
+    rows.forEach(row => {
+        console.log(row)
+    })
+}); */
 
 
-    db.all(sql, [], (err,rows) => {
-        if(err) return console.error(err.message);
-
-        rows.forEach((row) => {
-            console.log(row)
-        })
-    })  
-
-
- db.close((err) => {
-    if (err) return console.error(err.message);
-}) 
 
 
 
@@ -50,12 +112,12 @@ const sql = `SELECT * FROM users`;
 
 
       const sql = `INSERT INTO users(username, password, id)
-                    VALUES (?, ?, ?)`; 
+                    VALUES (?, ?, ?)`;
 
     db.run(sql, [username, password, id], (err) => {
         if(err) return console.error(err.message);
         console.log("a new row has been created")
-    })  
+    })
 
 
     db.close((err) => {
@@ -65,41 +127,29 @@ const sql = `SELECT * FROM users`;
 
     }).catch((error) => {
         if (error) return console.error(error);
-    }); 
+    });
 
 
  */
 
 
-
-
-/*      
+/*
     ---------   FÖR ATT SKAPA ETT NYTT TABLE    ------------
 
-db.run( 
+db.run(
         `CREATE TABLE users(username, password, id)`
         ); */
 
-/*     
+/*
     ---------   FÖR ATT LÄGGA IN NY CONTENT I USERS   ------------
 
 const sql = `INSERT INTO users(username, password, id)
-                    VALUES (?, ?, ?)`; 
+                    VALUES (?, ?, ?)`;
 
     db.run(sql, [`jonna`, `123`, 1], (err) => {
         if(err) return console.error(err.message);
         console.log("a new row has been created")
     })  */
-
-
-
-
-
-
-
-
-
-
 
 
 /* app.get("/orders", function(req, res, next) {
@@ -172,11 +222,3 @@ app.post('/register', (req, res) => {
 
     res.sendStatus(200)
 }) */
-
-
-
-
-
-app.listen(5000, () => {
-    console.log("http://localhost:5000")
-})

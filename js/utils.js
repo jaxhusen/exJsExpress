@@ -1,4 +1,4 @@
-// kod för hashning av lösen, ej samma som login.js
+/* // kod för hashning av lösen, ej samma som login.js
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -32,4 +32,4 @@ module.exports.verifyJWT = (token) => {
 // Decode
 module.exports.decodeJWT = (token) => {
     return jwt.decode(token, JWT_SECRET)
-}
+} */

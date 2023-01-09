@@ -48,6 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
+
+
+
+
+
+
     //createAccountForm function för submit som jämför om username finnns i users.json API
     createAccountForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -62,49 +68,68 @@ document.addEventListener("DOMContentLoaded", () => {
             var username = document.querySelector("#signupUsername").value;
             var password = document.querySelector("#signupPassword").value;
 
-            const usernameExists = users.find(obj => (obj.username === username))
-            if (usernameExists ){
-                setFormMessage(createAccountForm, "error", "Användarnamn finns redan")
-            } else if (usernameExists === undefined){
-               /*  window.location.href = 'login.html'; */
-               setFormMessage(createAccountForm, "success", "konto skapat")
-               //  IMPLEMENTERA NYA ANVÄNDAREN I APIT ELLER LOCALSTORAGE /* ------ CHECK ------- */
-               //OCH LOGGA IN 
-               // kolla denna https://www.youtube.com/watch?v=_EP2qCmLzSE
-               // https://www.geeksforgeeks.org/how-to-add-data-in-json-file-using-node-js/
-               users.push({username, password});
-
-               console.log(users)
-
-               
+            let newUser = {
+                "username": username,
+                "password": password
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            const usernameExists = users.find(obj => (obj.username === username))
+            if (usernameExists) {
+                setFormMessage(createAccountForm, "error", "Användarnamn finns redan")
+            } else if (usernameExists === undefined) {
+                /* window.location.href = 'login.html';  */
+                setFormMessage(createAccountForm, "success", "konto skapat")
+                users.push(newUser);
+            }
+ 
+            console.log(newUser)
+            console.log(users)
         }
-    });
+        });
+
+
+
+
+
 
 
     //loginForm function för submit som jämför username + password med users.json API
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        getUsers();
+
         async function getUsers() {
             const response = await fetch('../users.json');
             const data = await response.text();
 
-            var users = JSON.parse(data);
+            users = JSON.parse(data); 
             var username = document.querySelector("#username").value;
             var password = document.querySelector("#password").value;
             console.log(users)
 
             const accountExists = users.find(obj => (obj.username === username && obj.password === password))
-            if (accountExists === undefined){
+            if (accountExists === undefined) {
                 setFormMessage(loginForm, "error", "invalid username/password")
             }
             else {
-/*                 setFormMessage(loginForm, "success", "USER AND PASSWORD CORRECT") */
-                    window.location.href = 'index.html';
+                /* setFormMessage(loginForm, "success", "USER AND PASSWORD CORRECT") */
+                window.location.href = 'index.html';
             }
         }
+        getUsers();
     });
 
 
